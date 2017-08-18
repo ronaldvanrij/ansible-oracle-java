@@ -11,8 +11,7 @@
 #
 
 java_version: 8
-java_subversion: 141
-# jdk_tarball_hash: 336fa29ff2bb4ef291e347e091f7f4a7
+java_subversion: 144
 
 java_download_path: /tmp
 java_download_from_oracle: true
