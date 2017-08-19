@@ -35,11 +35,12 @@ galaxy_info:
               - all
 
     galaxy_tags:
-        - development
-        - system
+        - oracle
         - java
         - jdk
         - jvm
         - jce
+        - development
+        - system
 
 dependencies: []
