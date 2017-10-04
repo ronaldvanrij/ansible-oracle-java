@@ -5,7 +5,7 @@
 
 
 - name: fetch .rpm or .tar.gz files from Oracle site
-  include: fetch.yml
+  include_tasks: fetch.yml
   when: java_download_from_oracle
 
 - block:
@@ -14,35 +14,35 @@
       copy:
         src: "{{ playbook_dir }}/files/{{ jdk_tarball_file }}.rpm"
         dest: "{{ java_download_path }}/{{ jdk_tarball_file }}.rpm"
-      when: ansible_pkg_mgr == "yum" or ansible_pkg_mgr == "zypper"
+      when: use_rpm
 
     - name: copy tarball from local
       copy:
         src: "{{ playbook_dir }}/files/{{ jdk_tarball_file }}.tar.gz"
         dest: "{{ java_download_path }}/{{ jdk_tarball_file }}.tar.gz"
-      when: ansible_pkg_mgr != "yum" and ansible_pkg_mgr != "zypper" and ansible_os_family != "Darwin"
+      when: use_tarball
 
     - name: copy .dmg from local
       copy:
         src: "{{ playbook_dir }}/files/{{ jdk_tarball_file }}.dmg"
         dest: "{{ java_download_path }}/{{ jdk_tarball_file }}.dmg"
-      when: ansible_pkg_mgr != "yum" and ansible_pkg_mgr != "zypper" and ansible_os_family == "Darwin"
+      when: use_dmg
 
   when: not java_download_from_oracle
 
 
 
 - name: delegate to RPM installation process
-  include: use-rpm.yml
-  when: (ansible_pkg_mgr == "yum" or ansible_pkg_mgr == "zypper") and ansible_os_family != 'Darwin'
+  include_tasks: use-rpm.yml
+  when: use_rpm
 
 - name: delegate to raw tarball installation process
-  include: use-tarball.yml
-  when: ansible_pkg_mgr != "yum" and ansible_pkg_mgr != "zypper" and ansible_os_family != 'Darwin'
+  include_tasks: use-tarball.yml
+  when: use_tarball
 
 - name: delegate to Mac OS X dmg installation
-  include: use-dmg.yml
-  when: ansible_os_family == 'Darwin'
+  include_tasks: use-dmg.yml
+  when: use_dmg
 
 - block:
 
@@ -66,8 +66,8 @@
 
     - name: link "{{ java_install_dir }}/{{ java_default_link_name }}"
       file:
-        dest: "{{ java_install_dir }}/{{ java_default_link_name }}"
         src: "{{ java_install_dir }}/jdk{{ jdk_version }}"
+        dest: "{{ java_install_dir }}/{{ java_default_link_name }}"
         state: link
 
     - name: alternatives link for "java"

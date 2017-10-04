@@ -10,8 +10,8 @@ Role name in Ansible Galaxy: **[srsp.oracle-java](https://galaxy.ansible.com/srs
 
 This Ansible role has the following features for Oracle JDK:
 
- - Install JDK 8 in current versions.
- - Install optional Java Cryptography Extensions (JCE)
+ - Install JDK 9 or 8 in current versions.
+ - Install optional Java Cryptography Extensions (JCE) (only for JDK 8)
  - Install for CentOS, Debian/Ubuntu, SUSE, and Mac OS X families.
  
 This role is based on [williamyeh.oracle-java](https://github.com/William-Yeh/ansible-oracle-java), but I wanted more recent Java versions and decided to drop support for older versions.
@@ -72,6 +72,26 @@ If you want to install a Java release which is not supported out-of-the-box, you
     java_build: 15
     jdk_tarball_hash: 336fa29ff2bb4ef291e347e091f7f4a7
 ```
+
+### JDK 9 variables
+
+If you want to use JDK 9 in the most recent version: 
+
+```yaml
+---
+- hosts: all
+
+  roles:
+    - srsp.oracle-java
+
+  vars:
+    java_version: 9 
+    java_subversion: 181
+```
+
+`jdk_tarball_hash` is not needed anymore, because Oracle does not use it in JDK 9 downloads.
+
+`java_install_jce` is always `false` no matter what you specify, because the Java Cryptography Extensions (JCE) are not longer needed anymore with JDK 9.
 
 
 ### Customized variables, if absolutely necessary

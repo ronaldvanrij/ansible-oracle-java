@@ -10,8 +10,8 @@
 # user-configurable defaults
 #
 
-java_version: 9
-java_subversion: 181
+java_version: 8
+java_subversion: 144
 
 java_download_path: /tmp
 java_download_from_oracle: true

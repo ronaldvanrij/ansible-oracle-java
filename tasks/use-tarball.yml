@@ -7,11 +7,20 @@
 
 - name: mkdir for Java
   file:
+    path: "{{ java_install_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "u=rwx,go=rx"
+
+- name: mkdir for specific Java version
+  file:
     path: "{{ java_install_dir }}/jdk{{ jdk_version }}"
     state: directory
     owner: root
     group: root
     mode: "u=rwx,go=rx"
+  when: java_version == 8
 
 - name: install JDK via tarball file
   unarchive:
@@ -21,3 +30,11 @@
     group: root
     mode: "go-w"
     copy: no
+
+# There is only a jdk-9 folder in the tarball
+- name: move jdk to correctly versioned folder
+  command: "mv jdk-9 jdk{{ jdk_version }}"
+  args:
+    chdir: "{{ java_install_dir }}"
+    creates: "{{ java_install_dir }}/jdk{{ jdk_version }}"
+  when: java_version == 9

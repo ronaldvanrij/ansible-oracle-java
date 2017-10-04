@@ -7,12 +7,12 @@
 
   # vars from defaults/main.yml
   vars:
-    java_version: 8
-    java_subversion: 144
+    java_version: 9
+    java_subversion: 181
 
     java_download_path: /tmp
     java_download_from_oracle: true
     java_remove_download: false
-    java_install_jce: true
+    java_install_jce: false
 
     java_set_javahome: false
