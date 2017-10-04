@@ -32,6 +32,15 @@
 # version-specific variables
 #
 
+## JDK 9
+- name: set internal vars for 1.9.0
+  set_fact:
+    jdk_version_detail: "{{ java_version }}u{{ java_subversion }}"
+    jdk_tarball_hash:
+  when: java_version == 9
+
+
+## JDK 8
 - name: set internal vars for 1.8.0_144
   set_fact:
     jdk_version_detail: "{{ java_version }}u{{ java_subversion }}-b01"
@@ -79,7 +88,12 @@
 - name: compose filename, if necessary
   set_fact:
     jdk_tarball_file: "jdk-{{ java_version }}u{{ java_subversion }}-{{ jdk_os }}-{{ jdk_arch }}"
-  when: jdk_tarball_file is not defined
+  when: jdk_tarball_file is not defined and java_version == 8
+
+- name: compose filename, if necessary
+  set_fact:
+    jdk_tarball_file: "jdk-{{ java_version }}_{{ jdk_os }}-{{ jdk_arch }}"
+  when: jdk_tarball_file is not defined and java_version == 9
 
 - name: compose url for downloading file, if necessary
   set_fact:
