@@ -3,7 +3,7 @@
   become: yes
   become_method: sudo
   tasks:
-    - include_tasks: 'tasks/main.yml'
+    - include: 'tasks/main.yml'
 
   # vars from defaults/main.yml
   vars:
