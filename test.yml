@@ -3,16 +3,7 @@
   become: yes
   become_method: sudo
   tasks:
-    - include_tasks: 'tasks/main.yml'
+    - include: 'tasks/main.yml'
+  vars_files:
+    - 'defaults/main.yml'
 
-  # vars from defaults/main.yml
-  vars:
-    java_version: 8
-    java_subversion: 144
-
-    java_download_path: /tmp
-    java_download_from_oracle: true
-    java_remove_download: false
-    java_install_jce: true
-
-    java_set_javahome: false
