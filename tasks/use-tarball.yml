@@ -12,6 +12,7 @@
     owner: root
     group: root
     mode: "u=rwx,go=rx"
+  become: yes
 
 - name: install JDK via tarball file
   unarchive:
@@ -21,3 +22,4 @@
     group: root
     mode: "go-w"
     copy: no
+  become: yes

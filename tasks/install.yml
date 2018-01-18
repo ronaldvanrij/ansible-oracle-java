@@ -99,6 +99,7 @@
         path: "{{ java_install_dir }}/{{ java_default_link_name }}"
       when: filecheck and filecheck.stat.exists
 
+  become: yes
   when: ansible_os_family != "Darwin"
 
 
