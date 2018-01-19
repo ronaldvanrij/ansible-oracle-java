@@ -69,6 +69,14 @@
         src: "{{ java_install_dir }}/jdk{{ jdk_version }}"
         dest: "{{ java_install_dir }}/{{ java_default_link_name }}"
         state: link
+      when: java_version == 8
+
+    - name: link "{{ java_install_dir }}/{{ java_default_link_name }}"
+      file:
+        src: "{{ java_install_dir }}/jdk-{{ jdk_version }}"
+        dest: "{{ java_install_dir }}/{{ java_default_link_name }}"
+        state: link
+      when: java_version == 9
 
     - name: alternatives link for "java"
       alternatives:

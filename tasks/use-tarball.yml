@@ -33,12 +33,3 @@
     mode: "go-w"
     copy: no
   become: yes
-
-# There is only a jdk-9 folder in the tarball
-- name: move jdk to correctly versioned folder
-  command: "mv jdk-9 jdk{{ jdk_version }}"
-  args:
-    chdir: "{{ java_install_dir }}"
-    creates: "{{ java_install_dir }}/jdk{{ jdk_version }}"
-  become: yes
-  when: java_version == 9

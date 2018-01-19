@@ -8,7 +8,7 @@
   # vars from defaults/main.yml
   vars:
     java_version: 9
-    java_subversion: 181
+    java_subversion: 0.4
 
     java_download_path: /tmp
     java_download_from_oracle: true

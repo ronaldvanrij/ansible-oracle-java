@@ -10,7 +10,7 @@ Role name in Ansible Galaxy: **[srsp.oracle-java](https://galaxy.ansible.com/srs
 
 This Ansible role has the following features for Oracle JDK:
 
- - Install JDK 9 or 8 in current versions.
+ - Install 8 or 9 (experimental)in current versions.
  - Install optional Java Cryptography Extensions (JCE) (only for JDK 8)
  - Install for CentOS, Debian/Ubuntu, SUSE, and Mac OS X families.
  

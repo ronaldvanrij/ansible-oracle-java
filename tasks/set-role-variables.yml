@@ -11,7 +11,7 @@
 
 - name: set general internal vars
   set_fact:
-    jdk_version: "{{ java_version }}_{{ java_subversion }}"
+    jdk_version: "{{ java_version }}.{{ java_subversion }}"
   when: java_version == 9
 
 
@@ -68,11 +68,11 @@
 #
 
 ## JDK 9
-- name: set internal vars for 9_181
+- name: set internal vars for 9.0.4
   set_fact:
-    java_subversion: "181"
-    jdk_version_detail: "{{ java_version }}+{{ java_subversion }}"
-    jdk_tarball_hash:
+    java_subversion: 0.4
+    jdk_version_detail: "{{ java_version }}.{{ java_subversion }}+11"
+    jdk_tarball_hash: c2514751926b4512b076cc82f959763f
   when: java_version == 9
 
 
@@ -140,7 +140,7 @@
 
 - name: compose filename, if necessary
   set_fact:
-    jdk_tarball_file: "jdk-{{ java_version }}_{{ jdk_os }}-{{ jdk_arch }}_bin"
+    jdk_tarball_file: "jdk-{{ java_version }}.{{ java_subversion }}_{{ jdk_os }}-{{ jdk_arch }}_bin"
   when: jdk_tarball_file is not defined and java_version == 9
 
 - name: compose url for downloading file, if necessary
