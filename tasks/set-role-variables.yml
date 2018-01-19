@@ -32,6 +32,12 @@
 # version-specific variables
 #
 
+- name: set internal vars for 1.8.0_161
+  set_fact:
+    jdk_version_detail: "{{ java_version }}u{{ java_subversion }}-b12"
+    jdk_tarball_hash: 2f38c3b165be4555a1fa6e98c45e0808
+  when: java_version == 8 and java_subversion == 161
+
 - name: set internal vars for 1.8.0_152
   set_fact:
     jdk_version_detail: "{{ java_version }}u{{ java_subversion }}-b16"
