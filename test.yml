@@ -7,7 +7,3 @@
   vars_files:
     - 'defaults/main.yml'
 
-  vars:
-    #java_version: 8
-    java_subversion: 152
-    java_install_jce: true

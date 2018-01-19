@@ -7,12 +7,22 @@
 
 - name: mkdir for Java
   file:
+    path: "{{ java_install_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "u=rwx,go=rx"
+  become: yes
+
+- name: mkdir for specific Java version
+  file:
     path: "{{ java_install_dir }}/jdk{{ jdk_version }}"
     state: directory
     owner: root
     group: root
     mode: "u=rwx,go=rx"
   become: yes
+  when: java_version == 8
 
 - name: install JDK via tarball file
   unarchive:

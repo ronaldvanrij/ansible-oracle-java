@@ -14,10 +14,7 @@ matrix:
     env: LINUX=ubuntu14.04
 
   - os: linux
-    env: LINUX=ubuntu12.04
-
-#  - os: linux
-#    env: LINUX=debian9
+    env: LINUX=debian9
 
   - os: linux
     env: LINUX=debian8
@@ -34,10 +31,6 @@ matrix:
   - os: osx
     env: LINUX=OSX
 
-
-
-before_install:
-    - test/travis/before_install.sh
 
 script:
     - test/travis/script.sh
