@@ -2,7 +2,7 @@
 
 galaxy_info:
     author: srsp
-    description: Oracle JDK 8 for CentOS/Debian/Ubuntu/Suse/MacOSX
+    description: Oracle JDK 8/9 for CentOS/Debian/Ubuntu/Suse/MacOSX
     license: Apache
 
     min_ansible_version: 2.0.0
@@ -37,7 +37,10 @@ galaxy_info:
     galaxy_tags:
         - oracle
         - java
+        - java development
         - jdk
+        - jdk8
+        - jdk9
         - jvm
         - jce
         - development
