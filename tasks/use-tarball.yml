@@ -12,6 +12,7 @@
     owner: root
     group: root
     mode: "u=rwx,go=rx"
+  become: yes
 
 - name: mkdir for specific Java version
   file:
@@ -20,6 +21,7 @@
     owner: root
     group: root
     mode: "u=rwx,go=rx"
+  become: yes
   when: java_version == 8
 
 - name: install JDK via tarball file
@@ -30,6 +32,7 @@
     group: root
     mode: "go-w"
     copy: no
+  become: yes
 
 # There is only a jdk-9 folder in the tarball
 - name: move jdk to correctly versioned folder
@@ -37,4 +40,5 @@
   args:
     chdir: "{{ java_install_dir }}"
     creates: "{{ java_install_dir }}/jdk{{ jdk_version }}"
+  become: yes
   when: java_version == 9
