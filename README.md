@@ -10,8 +10,8 @@ Role name in Ansible Galaxy: **[srsp.oracle-java](https://galaxy.ansible.com/srs
 
 This Ansible role has the following features for Oracle JDK:
 
- - Install JDK 8 or 9 in current versions.
- - Install optional Java Cryptography Extensions (JCE) (only for JDK 8)
+ - Install JDK 8, 9 or 10 in current versions.
+ - Install optional Java Cryptography Extensions (JCE). Only for JDK 8, because it is no longer needed for JDKs > 8.
  - Install for CentOS, Debian/Ubuntu, SUSE, and Mac OS X families.
  
 This role is based on [williamyeh.oracle-java](https://github.com/William-Yeh/ansible-oracle-java), but I wanted more recent Java versions and decided to drop support for older versions.
@@ -57,41 +57,53 @@ java_install_jce: false
 
 For other configurable internals, read `tasks/set-role-variables.yml` file; for example, supported `java_version`/`java_subversion` combinations.
 
-If you want to install a Java release which is not supported out-of-the-box, you have to specify the corresponding Java build number in the variable `java_build` in addition to `java_version` and `java_subversion`, e.g.
+### I want to install a JDK which you don't yet support!
+
+No problem! You have to specify the corresponding Java build number in the variables `java_build` and `jdk_tarball_hash` in addition to `java_version` and `java_subversion`, e.g.
+
 
 ```yaml
----
 - hosts: all
 
   roles:
     - srsp.oracle-java
 
   vars:
-    java_version: 8
-    java_subversion: 141
-    java_build: 15
-    jdk_tarball_hash: 336fa29ff2bb4ef291e347e091f7f4a7
+    - java_version: 8
+    - java_subversion: 141
+    - java_build: 15
+    - jdk_tarball_hash: 336fa29ff2bb4ef291e347e091f7f4a7
 ```
+
 
 ### JDK 9 variables
 
-If you want to use JDK 9 in the most recent version: 
+JDK 9 is only available in version 9.0.4. If you want to use it, just say:
 
 ```yaml
----
 - hosts: all
 
   roles:
     - srsp.oracle-java
 
   vars:
-    java_version: 9 
-    java_subversion: 0.4
-    java_build: 11
-    jdk_tarball_hash: c2514751926b4512b076cc82f959763f
+    - java_version: 9 
 ```
 
-`java_install_jce` is always `false` no matter what you specify, because the Java Cryptography Extensions (JCE) are not longer needed anymore with JDK 9.
+
+### JDK 10 variables
+
+If you want to use JDK 10 in the most recent version: 
+
+```yaml
+- hosts: all
+
+  roles:
+    - srsp.oracle-java
+
+  vars:
+    - java_version: 10 
+```
 
 
 ### Customized variables, if absolutely necessary
@@ -131,7 +143,6 @@ Set vars in your playbook file.
 Simple example:
 
 ```yaml
----
 # file: simple-playbook.yml
 
 - hosts: all
@@ -140,7 +151,7 @@ Simple example:
     - srsp.oracle-java
 
   vars:
-    java_version: 8
+    - java_version: 8
 ```
 
 
@@ -151,7 +162,6 @@ For some reasons, you may want to pre-fetch .rpm, .tar.gz or .dmg files *before 
 To do this, put the file on the `{{ playbook_dir }}/files` directory in advance, and then set the `java_download_from_oracle` variable to `false`:
 
 ```yaml
----
 # file: prefetch-playbook.yml
 
 - hosts: all
@@ -160,8 +170,8 @@ To do this, put the file on the `{{ playbook_dir }}/files` directory in advance,
     - srsp.oracle-java
 
   vars:
-    java_version: 8
-    java_download_from_oracle: false
+    - java_version: 8
+    - java_download_from_oracle: false
 ```
 
 
