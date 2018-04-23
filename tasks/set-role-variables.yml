@@ -176,13 +176,13 @@
 
 - name: compose url for downloading file, if necessary
   set_fact:
-    jdk_tarball_url:  "http://download.oracle.com/otn-pub/java/jdk/{{ jdk_version_detail }}/{{ jdk_tarball_file }}"
+    jdk_tarball_url:  "{{ java_mirror }}/jdk/{{ jdk_version_detail }}/{{ jdk_tarball_file }}"
   when: jdk_version_detail is defined and jdk_tarball_hash is not defined
 
 
 - name: compose url for downloading file, if necessary
   set_fact:
-    jdk_tarball_url: "http://download.oracle.com/otn-pub/java/jdk/{{ jdk_version_detail }}/{{ jdk_tarball_hash }}/{{ jdk_tarball_file }}"
+    jdk_tarball_url: "{{ java_mirror }}/jdk/{{ jdk_version_detail }}/{{ jdk_tarball_hash }}/{{ jdk_tarball_file }}"
   when: jdk_version_detail is defined and jdk_tarball_hash is defined
 
 
@@ -197,7 +197,7 @@
 
 - name: set JCE variables for java 8
   set_fact:
-    jce_zip_url: "http://download.oracle.com/otn-pub/java/jce/{{ java_version }}/{{ jce_zip_file }}"
+    jce_zip_url: "{{ java_mirror }}/jce/{{ java_version }}/{{ jce_zip_file }}"
     jce_zip_folder: "UnlimitedJCEPolicyJDK{{ java_version }}"
   when: java_version == 8
 
