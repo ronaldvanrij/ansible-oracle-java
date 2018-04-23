@@ -76,21 +76,6 @@ No problem! You have to specify the corresponding Java build number in the varia
 ```
 
 
-### JDK 9 variables
-
-JDK 9 is only available in version 9.0.4. If you want to use it, just say:
-
-```yaml
-- hosts: all
-
-  roles:
-    - srsp.oracle-java
-
-  vars:
-    - java_version: 9 
-```
-
-
 ### JDK 10 variables
 
 If you want to use JDK 10 in the most recent version: 
@@ -103,6 +88,21 @@ If you want to use JDK 10 in the most recent version:
 
   vars:
     - java_version: 10 
+```
+
+
+### JDK 9 variables
+
+JDK 9 is only available in version 9.0.4. If you want to use it, just say:
+
+```yaml
+- hosts: all
+
+  roles:
+    - srsp.oracle-java
+
+  vars:
+    - java_version: 9 
 ```
 
 
