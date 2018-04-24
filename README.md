@@ -45,6 +45,9 @@ java_download_path: /tmp
 #   - false: copy from `{{ playbook_dir }}/files` on the control machine.
 java_download_from_oracle: true
 
+# if you set java_download_from_oracle to true, you can define an alternative download location. Default is the official Oracle website.
+java_mirror: http://download.oracle.com/otn-pub/java
+
 # remove temporary downloaded files?
 java_remove_download: true
 
