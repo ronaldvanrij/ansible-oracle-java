@@ -78,7 +78,7 @@ No problem! You have to specify the corresponding Java build number in the varia
 
 ### JDK 10 variables
 
-If you want to use JDK 10 in the most recent version: 
+If you want to use JDK 10: 
 
 ```yaml
 - hosts: all
@@ -88,6 +88,7 @@ If you want to use JDK 10 in the most recent version:
 
   vars:
     - java_version: 10 
+    - java_subversion: 0.1
 ```
 
 
