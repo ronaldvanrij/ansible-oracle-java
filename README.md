@@ -10,12 +10,12 @@ Role name in Ansible Galaxy: **[srsp.oracle-java](https://galaxy.ansible.com/srs
 
 This Ansible role has the following features for Oracle JDK:
 
- - Install JDK 8 or 10 in current versions.
+ - Install JDK 8 or 10 in the latest version.
  - Install optional Java Cryptography Extensions (JCE). Only for JDK 8, because it is no longer needed for JDKs > 8.
  - Install for CentOS, Debian/Ubuntu, SUSE, and Mac OS X families.
  
- **Attention:** As of April 2018 older versions of JDK 8 and 10 are no longer available publicly on the Oracle website. You need an Oracle account to download these. This role
- does not support downloading roles with an Oracle account. This means, that you can only download the latest version of JDK 8 and 10 with this role!
+ **Attention:** As of April 2018 older versions of JDKs are no longer available publicly on the Oracle website. You need an Oracle account to download these. This role
+ does not support downloading roles with an Oracle account. This means, that you can only download the latest version of all JDKs that have not yet reached their EOL with this role!
  
 However you can still use this role to install older versions, if you download them and provide them as pre-downloaded file or via http (just define `java_mirror` accordingly).
  
@@ -28,7 +28,7 @@ If you prefer OpenJDK, try alternatives such as [geerlingguy.java](https://galax
 
 ### Mandatory variables
 
-None
+None, but it is strongly advised to `java_version: 8` or `java_version: 10`, which would give you the latest version of either one.
 
 ### Optional variables
 
@@ -86,7 +86,7 @@ No problem! You have to specify the corresponding Java build number in the varia
 
 ### JDK 10 variables
 
-If you want to use JDK 10: 
+If you want to use the latest JDK 10: 
 
 ```yaml
 - hosts: all
@@ -96,13 +96,12 @@ If you want to use JDK 10:
 
   vars:
     - java_version: 10 
-    - java_subversion: 0.1
 ```
 
 
 ### JDK 9 variables
 
-JDK 9 is only available in version 9.0.4. If you want to use it, just say:
+JDK 9 is only available in version 9.0.4. If you want to use it, set the following vars and provide it as tarball (see next section):
 
 ```yaml
 - hosts: all
@@ -125,14 +124,14 @@ If you have a pre-downloaded `jdk_tarball_file` whose filename cannot be inferre
 
 jdk_tarball_file
 
-# For example, if you have a `files/jdk-7u79-linux-x64.tar.gz` locally,
+# For example, if you have a `files/jdk-8u172-linux-x64.tar.gz` locally,
 # but the filename cannot be inferred successfully by `tasks/set-role-variables.yml`,
 # you may specify the following variables in your playbook:
 #
-#    java_version:    7
-#    java_subversion: 79
+#    java_version:    8
+#    java_subversion: 172
 #    java_download_from_oracle: false
-#    jdk_tarball_file: jdk-7u79-linux-x64
+#    jdk_tarball_file: jdk-8u172-linux-x64
 #
 ```
 
