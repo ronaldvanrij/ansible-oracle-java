@@ -86,6 +86,7 @@
 
 
 ## JDK 9
+# Only available for download with oracle account (not supported by this role)!
 - name: set internal vars for 9.0.4
   set_fact:
     java_subversion: 0.4
@@ -107,6 +108,7 @@
     jdk_tarball_hash: 512cd62ec5174c3487ac17c61aaa89e8
   when: java_version == 8 and java_subversion == 171
 
+# All versions below are only available for download with an oracle account (not supported by this role)!
 - name: set internal vars for 1.8.0_161
   set_fact:
     jdk_version_detail: "{{ java_version }}u{{ java_subversion }}-b12"
