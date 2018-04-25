@@ -10,9 +10,14 @@ Role name in Ansible Galaxy: **[srsp.oracle-java](https://galaxy.ansible.com/srs
 
 This Ansible role has the following features for Oracle JDK:
 
- - Install JDK 8, 9 or 10 in current versions.
+ - Install JDK 8 or 10 in current versions.
  - Install optional Java Cryptography Extensions (JCE). Only for JDK 8, because it is no longer needed for JDKs > 8.
  - Install for CentOS, Debian/Ubuntu, SUSE, and Mac OS X families.
+ 
+ **Attention:** As of April 2018 older versions of JDK 8 and 10 are no longer available publicly on the Oracle website. You need an Oracle account to download these. This role
+ does not support downloading roles with an Oracle account. This means, that you can only download the latest version of JDK 8 and 10 with this role!
+ 
+However you can still use this role to install older versions, if you download them and provide them as pre-downloaded file or via http (just define `java_mirror` accordingly).
  
 This role is based on [williamyeh.oracle-java](https://github.com/William-Yeh/ansible-oracle-java), but I wanted more recent Java versions and decided to drop support for older versions.
 
