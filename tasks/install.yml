@@ -110,6 +110,12 @@
         link: /usr/bin/jar
         path: "{{ java_install_dir }}/{{ java_default_link_name }}/bin/jar"
 
+    - name: alternatives link for "keytool"
+      alternatives:
+        name: java
+        link: /usr/bin/keytool
+        path: "{{ java_install_dir }}/{{ java_default_link_name }}/bin/keytool"
+
     - name: check if "java_sdk" target exists
       stat: path=/usr/lib/jvm/java
       register: filecheck
